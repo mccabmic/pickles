@@ -18,35 +18,37 @@ void camelCase(char* word){
 	int count = 0;
 	int underScoreCount = 0;
 
-	char* tempString = word;
+	char tempString[50];
 	
-	while(tempString[count]){
-		if (tempString[count] == '_'){
+	while(word[count]){
+		if (word[count] == '_'){
 			underScoreCount++;
 		}
 
 		else{
-			word[count - underScoreCount] = tempString[count];
+			tempString[count - underScoreCount] = word[count];
 
-			if(tempString[count - 1] == '_' && underScoreCount > 0){
-				word[count - underScoreCount] = toUpperCase(word[count - underScoreCount]);
+			if(word[count - 1] == '_' && underScoreCount > 0){
+				tempString[count - underScoreCount] = toUpperCase(tempString[count - underScoreCount]);
 			}
 		}
 
 		count++;
 
 		/* peak null *, terminate string early*/
-		if(tempString[count + 1] == 0){
-			word[count - underScoreCount + 1] = 0;
+		if(word[count + 1] == 0){
+			tempString[count - underScoreCount + 1] = 0;
 		}
 	}
+
+	printf("%s\n", tempString);
 }
 
 
 
 int main(){
     /*Read the string from the keyboard */
-    char mystring[20] = "i___am__god";
+    char mystring[20] = "__i_am_god";
 
     /*Call camelCase*/
     camelCase(mystring);
